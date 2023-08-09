@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-EmployeeMasterEntity",
+      "appliesTo": "Entities/EmployeeMasterEntity.cs",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-EmployeeMasterEntity",
+      "appliesTo": "Entities/EmployeeMasterEntity.cs",
+      "type": "launch"
+    }
+  ]
+}

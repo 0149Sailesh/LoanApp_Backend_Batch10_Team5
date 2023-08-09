@@ -1,20 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanAPI.Models
+
+namespace LOANAPI.Entites
 {
-    public class EmployeeIssueDetails
+    public class EmployeeIssueDetailsEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)] //disable identity
         public string Issue_Id { get; set; }
 
-        [Required]
+        [Required] //applies not null constraint
         [Column(TypeName = "varchar")]
         [StringLength(50)]
         [ForeignKey("EmployeeMasterEntity")]
         public string Employee_Id { get; set; }
 
-        [Required]
+        [Required] //applies not null constraint
         [Column(TypeName = "varchar")]
         [StringLength(50)]
         [ForeignKey("ItemMasterEntity")]

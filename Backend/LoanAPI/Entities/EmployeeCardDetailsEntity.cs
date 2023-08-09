@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanAPI.Models
+namespace LoanAPI.Entities
 {
-    public class EmployeeCardDetails
+    public class EmployeeCardDetailsEntity
     {
         [Required]
         [Column(TypeName = "varchar")]

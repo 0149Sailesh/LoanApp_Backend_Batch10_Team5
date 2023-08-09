@@ -1,21 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanAPI.Models
+
+namespace LOANAPI.Entites
 {
-    public class EmployeeMaster
+    public class EmployeeMastersEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Employee_Id { get; set; }
 
         [Required]
         [StringLength(20)]
         [Column(TypeName = "varchar")]
-        public string Employee_Name { get; set;}
+        public string Employee_Name { get; set; }
 
         [Required]
         [Column(TypeName = "char")]
-        public char Employee_Gender { get; set;}
+        public char Employee_Gender { get; set; }
 
         [Required]
         [StringLength(25)]

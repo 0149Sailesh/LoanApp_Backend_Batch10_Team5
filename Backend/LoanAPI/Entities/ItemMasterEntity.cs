@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanAPI.Models
+namespace LoanAPI.Entity
 {
-    public class ItemMaster
+    public class ItemMasterEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(TypeName = "varchar")]
         [StringLength(6)]
         public string Item_Id { get; set; }
