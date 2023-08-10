@@ -6,26 +6,28 @@ namespace LoanAPI.Models
     public class EmployeeIssueDetails
     {
         [Key]
+        [Column(TypeName = "varchar")]
+        [StringLength(6)]
         public string Issue_Id { get; set; }
 
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(50)]
-        [ForeignKey("EmployeeMasterEntity")]
+        [StringLength(6)]
+        [ForeignKey("EmployeeMaster")]
         public string Employee_Id { get; set; }
 
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(50)]
-        [ForeignKey("ItemMasterEntity")]
+        [StringLength(6)]
+        [ForeignKey("ItemMaster")]
         public string Item_Id { get; set; }
 
         [Required]
-        [Column(TypeName = "DateOnly")]
-        public DateOnly Issue_Date { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime Issue_Date { get; set; }
 
         [Required]
-        [Column(TypeName = "DateOnly")]
-        public DateOnly Return_Date { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime Return_Date { get; set; }
     }
 }
