@@ -1,10 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanAPI.Entities
+namespace LoanAPI.Entites
 {
     public class EmployeeCardDetailsEntity
     {
+        [Key]
+        [Required]
+        [Column(TypeName = "varchar")]
+        [StringLength(6)]
+        public string Card_Id { get; set; }
+
+
         [Required]
         [Column(TypeName = "varchar")]
         [StringLength(6)]
@@ -14,11 +21,11 @@ namespace LoanAPI.Entities
         [Required]
         [Column(TypeName = "varchar")]
         [StringLength(6)]
-        [ForeignKey("EmployeeMasterEntity")]
+        [ForeignKey("LoanCardMaster")]
         public string Loan_Id { get; set; }
 
         [Required]
-        [Column(TypeName = "DateOnly")]
-        public DateOnly Card_Issue_Date { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime Card_Issue_Date { get; set; }
     }
 }

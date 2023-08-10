@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanAPI.Entity
+namespace LoanAPI.Entites
 {
     public class ItemMasterEntity
     {
@@ -17,7 +17,7 @@ namespace LoanAPI.Entity
         public string Item_Description { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar")]
+        [Column(TypeName = "char")]
         public char Issue_Status { get; set; }
 
         [Required]

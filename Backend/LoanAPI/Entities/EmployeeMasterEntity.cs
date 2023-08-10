@@ -8,6 +8,8 @@ namespace LOANAPI.Entites
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column(TypeName = "varchar")]
+        [StringLength(6)]
         public string Employee_Id { get; set; }
 
         [Required]
@@ -30,11 +32,27 @@ namespace LOANAPI.Entites
         public string Department { get; set; }
 
         [Required]
-        [Column(TypeName = "DateOnly")]
-        public DateOnly Date_of_Birth { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime Date_of_Birth { get; set; }
 
         [Required]
-        [Column(TypeName = "DateOnly")]
-        public DateOnly Date_of_Joining { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime Date_of_Joining { get; set; }
+
+        [Required(ErrorMessage = "User Name is required")]
+        [Column(TypeName = "varchar")]
+        [StringLength(25)]
+        public string Username { get; set; }
+
+        [EmailAddress]
+        [Required(ErrorMessage = "Email is required")]
+        [Column(TypeName = "varchar")]
+        [StringLength(25)]
+        public string? Email { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [Column(TypeName = "varchar")]
+        [StringLength(25)]
+        public string Password { get; set; }
     }
 }
