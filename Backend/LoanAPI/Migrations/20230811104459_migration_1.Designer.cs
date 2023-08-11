@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoanAPI.Migrations
 {
     [DbContext(typeof(LoanDbContext))]
-    [Migration("20230810201219_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20230811104459_migration_1")]
+    partial class migration_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

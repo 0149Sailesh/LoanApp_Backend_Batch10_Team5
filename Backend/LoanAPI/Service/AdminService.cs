@@ -14,6 +14,7 @@ namespace LoanAPI.Service
 
         public void AddAdmin(AdminEntity Admin)
         {
+            Console.WriteLine("Enter into Admin Service");
             _dbconteact.AdminEntity.Add(Admin);
             _dbconteact.SaveChanges();
         }
@@ -40,11 +41,10 @@ namespace LoanAPI.Service
             return _dbconteact.AdminEntity.ToList();
         }
 
-        void IAdminService.AddAdmin(AdminEntity admin)
+        /*void IAdminService.AddAdmin(AdminEntity admin)
         {
             throw new NotImplementedException();
-        }
-
+        }*/
         void IAdminService.DeleteAdmin(string id)
         {
             throw new NotImplementedException();

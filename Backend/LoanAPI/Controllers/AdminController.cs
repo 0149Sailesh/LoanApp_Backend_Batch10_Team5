@@ -2,6 +2,7 @@
 using LoanAPI.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace LoanAPI.Controllers
 {
@@ -13,6 +14,7 @@ namespace LoanAPI.Controllers
 
         public AdminController(IAdminService adminService)
         {
+            Console.WriteLine("Enter into Admin Controller");
             this.adminService = adminService;
         }
         //Endpoints
@@ -21,8 +23,9 @@ namespace LoanAPI.Controllers
         {
             try
             {
+                Console.WriteLine("Enter into Admin Controller");
                 adminService.AddAdmin(admin);
-                return StatusCode(200, admin);
+                return StatusCode(200,"Employee Added");
             }
             catch (Exception)
             {
