@@ -1,26 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanAPI.Entities
+namespace LoanAPI.Entites
 {
     public class AdminEntity
     {
         [Key]
-        [Required(ErrorMessage = "User Name is required")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(25)]
-        public string? Username { get; set; }
+        [StringLength(10)]
+        public string Username { get; set; }
 
         [EmailAddress]
-        [Required(ErrorMessage = "Email is required")]
+        [Required]
         [Column(TypeName = "varchar")]
         [StringLength(25)]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
+        [Required]
         [Column(TypeName = "varchar")]
         [StringLength(25)]
-        public string? Password { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -7,18 +7,18 @@ namespace LoanAPI.Models
     public class AdminModel
     {
         [Key]
-        [Required(ErrorMessage = "User Name is required")]
+        [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(25)]
+        [StringLength(10)]
         public string Username { get; set; }
 
         [EmailAddress]
-        [Required(ErrorMessage = "Email is required")]
+        [Required]
         [Column(TypeName = "varchar")]
         [StringLength(25)]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
+        [Required]
         [Column(TypeName = "varchar")]
         [StringLength(25)]
         public string Password { get; set; }

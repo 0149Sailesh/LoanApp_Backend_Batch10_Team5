@@ -6,22 +6,36 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LoanAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class migration_1 : Migration
+    public partial class MyFirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AdminEntity",
+                columns: table => new
+                {
+                    Username = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
+                    Email = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
+                    Password = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdminEntity", x => x.Username);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ECDEntity",
                 columns: table => new
                 {
+                    Card_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
                     Employee_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
                     Loan_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
                     Card_Issue_Date = table.Column<DateTime>(type: "DateTime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ECDEntity", x => x.Employee_Id);
+                    table.PrimaryKey("PK_ECDEntity", x => x.Card_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,7 +63,10 @@ namespace LoanAPI.Migrations
                     Designation = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Department = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Date_of_Birth = table.Column<DateTime>(type: "DateTime", nullable: false),
-                    Date_of_Joining = table.Column<DateTime>(type: "DateTime", nullable: false)
+                    Date_of_Joining = table.Column<DateTime>(type: "DateTime", nullable: false),
+                    Username = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
+                    Email = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
+                    Password = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,6 +106,9 @@ namespace LoanAPI.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AdminEntity");
+
             migrationBuilder.DropTable(
                 name: "ECDEntity");
 

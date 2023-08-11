@@ -100,7 +100,28 @@ namespace LoanAPI.Migrations
                     b.ToTable("EMEntity");
                 });
 
-            modelBuilder.Entity("LoanAPI.Entities.EmployeeCardDetailsEntity", b =>
+            modelBuilder.Entity("LoanAPI.Entites.AdminEntity", b =>
+                {
+                    b.Property<string>("Username")
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar");
+
+                    b.HasKey("Username");
+
+                    b.ToTable("AdminEntity");
+                });
+
+            modelBuilder.Entity("LoanAPI.Entites.EmployeeCardDetailsEntity", b =>
                 {
                     b.Property<string>("Card_Id")
                         .HasMaxLength(6)
@@ -124,27 +145,7 @@ namespace LoanAPI.Migrations
                     b.ToTable("ECDEntity");
                 });
 
-            modelBuilder.Entity("LoanAPI.Entities.LoanCardMasterEntity", b =>
-                {
-                    b.Property<string>("Loan_Id")
-                        .HasMaxLength(6)
-                        .HasColumnType("varchar");
-
-                    b.Property<int>("Duration")
-                        .HasMaxLength(2)
-                        .HasColumnType("int");
-
-                    b.Property<string>("Loan_Type")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("varchar");
-
-                    b.HasKey("Loan_Id");
-
-                    b.ToTable("LCMEntity");
-                });
-
-            modelBuilder.Entity("LoanAPI.Entity.ItemMasterEntity", b =>
+            modelBuilder.Entity("LoanAPI.Entites.ItemMasterEntity", b =>
                 {
                     b.Property<string>("Item_Id")
                         .HasMaxLength(6)
@@ -176,6 +177,26 @@ namespace LoanAPI.Migrations
                     b.HasKey("Item_Id");
 
                     b.ToTable("IMEntity");
+                });
+
+            modelBuilder.Entity("LoanAPI.Entites.LoanCardMasterEntity", b =>
+                {
+                    b.Property<string>("Loan_Id")
+                        .HasMaxLength(6)
+                        .HasColumnType("varchar");
+
+                    b.Property<int>("Duration")
+                        .HasMaxLength(2)
+                        .HasColumnType("int");
+
+                    b.Property<string>("Loan_Type")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar");
+
+                    b.HasKey("Loan_Id");
+
+                    b.ToTable("LCMEntity");
                 });
 #pragma warning restore 612, 618
         }
