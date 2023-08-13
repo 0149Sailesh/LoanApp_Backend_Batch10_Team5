@@ -45,61 +45,24 @@ namespace LoanAPI.Service
         {
             throw new NotImplementedException();
         }*/
-        void IAdminService.DeleteAdmin(string id)
-        {
-            throw new NotImplementedException();
-        }
+        //void IAdminService.DeleteAdmin(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        void IAdminService.EditAdmin(AdminEntity admin)
-        {
-            throw new NotImplementedException();
-        }
+        //void IAdminService.EditAdmin(AdminEntity admin)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        List<AdminEntity> IAdminService.GetAdmin()
-        {
-            throw new NotImplementedException();
-        }
+        //List<AdminEntity> IAdminService.GetAdmins()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        AdminEntity IAdminService.GetAdmin(string id)
-        {
-            throw new NotImplementedException();
-        }
+        //AdminEntity IAdminService.GetAdmin(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
-
-/*public List<AdminModel> GetAdminswithProject()
-        {
-            try
-            {
-                List<AdminModel> AdminModels = (from e in _dbconteact.AdminEntitys
-                                                      join p in _dbconteact.Projects
-                                                      on e.ProjectCode equals p.ProjectCode
-                                                      select new AdminModel()
-                                                      {
-                                                          Id = e.Id,
-                                                          Name = e.Name,
-                                                          Project = p.ProjectName
-                                                      }).ToList();
-                return AdminModels;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public List<Entities.AdminModel> GetAdminwithProject()
-        {
-            throw new NotImplementedException();
-        }
-
-        Entities.AdminModel IAdminService.GetAdmin(string id)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class AdminEntity
-    {
-    }*/

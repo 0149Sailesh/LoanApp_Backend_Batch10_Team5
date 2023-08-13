@@ -13,6 +13,7 @@ namespace LoanAPI
             // Add services to the container.
             builder.Services.AddDbContext<LoanDbContext>(options => options.UseSqlServer(connection));
             builder.Services.AddTransient<IAdminService, AdminService>();
+            builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
