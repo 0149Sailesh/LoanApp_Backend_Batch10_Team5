@@ -23,7 +23,7 @@ namespace LoanAPI.Entites
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=DESKTOP-E6B8VLA\SQLEXPRESS;database=LoanDb;trusted_connection=true;encrypt=false");
+            optionsBuilder.UseSqlServer(@"server=WINDOWS-BVQNF6J;database=LoanDb;trusted_connection=true;encrypt=false");
         }
 
         
