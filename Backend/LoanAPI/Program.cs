@@ -32,11 +32,25 @@ namespace LoanAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:ValidIssuer"],
+            ValidAudience = builder.Configuration["Jwt:ValidIssuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]))
+        };
+    });
             builder.Services.AddCors(options => {
                 options.AddPolicy(name: "CORS",
                 builder =>
                 {
-                    builder.AllowAnyHeader().WithOrigins("*").AllowAnyMethod();
+                    builder.AllowAnyHeader().WithOrigins("http://localhost:3000").AllowCredentials().AllowAnyMethod();
                 });
             }
             );
@@ -48,12 +62,12 @@ namespace LoanAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseAuthorization();
             app.UseCors("CORS");
-            app.UseHttpsRedirection();
-
             app.UseAuthentication();
+            app.UseAuthorization();
+           
+
+
 
             app.MapControllers();
 

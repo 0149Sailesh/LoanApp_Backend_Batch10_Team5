@@ -90,6 +90,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpGet, Route("GetAllAdmins")]
+        [Authorize]
         public IActionResult GetAll()
         {
             List<AdminEntity> admins = adminService.GetAdmins();
