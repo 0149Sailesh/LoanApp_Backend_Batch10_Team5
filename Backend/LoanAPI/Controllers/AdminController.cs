@@ -1,8 +1,17 @@
 ﻿using LoanAPI.Entites;
 using LoanAPI.Service;
-using LOANAPI.Entites;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace LoanAPI.Controllers
 {
@@ -11,12 +20,58 @@ namespace LoanAPI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IAdminService adminService;
-
-        public AdminController(IAdminService adminService)
+        private IConfiguration _config;
+        public AdminController(IAdminService adminService, IConfiguration config)
         {
             this.adminService = adminService;
+            _config = config;
         }
         //Endpoints
+        [HttpPost, Route("LoginAdmin")]
+        public IActionResult Login([FromBody] AdminEntity admin)
+        {
+            var user = Authenticate(admin);
+
+            if (user != null)
+            {
+                var token = Generate(user);
+                return Ok(token);
+            }
+
+            return NotFound("User not found");
+        }
+
+        private string Generate(AdminEntity admin)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, admin.Username),
+                new Claim(ClaimTypes.Email, admin.Email)
+            };
+
+            var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
+              _config["Jwt:ValidAudience"],
+              claims,
+              expires: DateTime.Now.AddMinutes(15),
+              signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private AdminEntity Authenticate(AdminEntity admin)
+        {
+            var currentUser = AdminConstants.Admins.FirstOrDefault(o => o.Username.ToLower() == admin.Username.ToLower() && o.Password == admin.Password);
+
+            if (currentUser != null)
+            {
+                return currentUser;
+            }
+
+            return null;
+        }
         [HttpPost, Route("RegisterAdmin")]
         public IActionResult Add(AdminEntity admin)
         {

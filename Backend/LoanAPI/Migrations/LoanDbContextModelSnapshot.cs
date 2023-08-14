@@ -153,7 +153,8 @@ namespace LoanAPI.Migrations
 
                     b.Property<string>("Issue_Status")
                         .IsRequired()
-                        .HasColumnType("char");
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Item_Category")
                         .IsRequired()

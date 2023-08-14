@@ -172,3 +172,14 @@ D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\obj\Debug\net6.0\scopedcss\bund
 D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\obj\Debug\net6.0\LoanAPI.csproj.CopyComplete
 D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\obj\Debug\net6.0\LoanAPI.genruntimeconfig.cache
 D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\obj\Debug\net6.0\ref\LoanAPI.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\EntityFramework.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\System.Data.SqlClient.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\obj\Debug\net6.0\LoanAPI.Properties.Resources.resources
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\obj\Debug\net6.0\LoanAPI.csproj.GenerateResource.cache
+D:\LoanApp_Backend_Batch10_Team5\Backend\LoanAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

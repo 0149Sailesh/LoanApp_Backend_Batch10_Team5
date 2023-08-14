@@ -1,11 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using LoanAPI.Entites;
 using LoanAPI.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 
 namespace LoanAPI
 {
     public class Program
     {
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +24,9 @@ namespace LoanAPI
             builder.Services.AddDbContext<LoanDbContext>(options => options.UseSqlServer(connection));
             builder.Services.AddTransient<IAdminService, AdminService>();
             builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+
+            // Adding Authentication
+            
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -30,7 +43,9 @@ namespace LoanAPI
             }
 
             app.UseAuthorization();
+            app.UseHttpsRedirection();
 
+            app.UseAuthentication();
 
             app.MapControllers();
 

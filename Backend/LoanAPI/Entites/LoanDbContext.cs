@@ -1,5 +1,6 @@
 using LOANAPI.Entites;
 using Microsoft.EntityFrameworkCore;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace LoanAPI.Entites
 {
@@ -22,8 +23,10 @@ namespace LoanAPI.Entites
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=WINDOWS-BVQNF6J;database=LoanDb;trusted_connection=true;encrypt=false");
+            optionsBuilder.UseSqlServer(@"server=DESKTOP-E6B8VLA\SQLEXPRESS;database=LoanDb;trusted_connection=true;encrypt=false");
         }
+
+        
 
         //internal void SaveChanges()
         //{

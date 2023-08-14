@@ -17,8 +17,9 @@ namespace LoanAPI.Entites
         public string Item_Description { get; set; }
 
         [Required]
-        [Column(TypeName = "char")]
-        public char Issue_Status { get; set; }
+        [Column(TypeName = "varchar")]
+        [StringLength(1)]
+        public string Issue_Status { get; set; }
 
         [Required]
         [Column(TypeName = "varchar")]

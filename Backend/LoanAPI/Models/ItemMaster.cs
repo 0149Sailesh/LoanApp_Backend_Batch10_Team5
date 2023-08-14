@@ -18,7 +18,8 @@ namespace LoanAPI.Models
 
         [Required]
         [Column(TypeName = "varchar")]
-        public char Issue_Status { get; set; }
+        [StringLength(1)]
+        public string Issue_Status { get; set; }
 
         [Required]
         [Column(TypeName = "varchar")]

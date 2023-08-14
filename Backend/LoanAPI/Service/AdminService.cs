@@ -31,15 +31,17 @@ namespace LoanAPI.Service
             _dbconteact.AdminEntity.Update(Admin);
             _dbconteact.SaveChanges();
         }
+        
+        public List<AdminEntity> GetAdmins()
+        {
+            return _dbconteact.AdminEntity.ToList();
+        } 
         public AdminEntity GetAdmin(string id)
         {
             AdminEntity Admin = _dbconteact.AdminEntity.Find(id);
             return Admin;
         }
-        public List<AdminEntity> GetAdmins()
-        {
-            return _dbconteact.AdminEntity.ToList();
-        }
+       
 
         /*void IAdminService.AddAdmin(AdminEntity admin)
         {
@@ -60,6 +62,7 @@ namespace LoanAPI.Service
         //    throw new NotImplementedException();
         //}
 
+        
         //AdminEntity IAdminService.GetAdmin(string id)
         //{
         //    throw new NotImplementedException();
