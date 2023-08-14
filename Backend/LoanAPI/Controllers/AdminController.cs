@@ -21,10 +21,12 @@ namespace LoanAPI.Controllers
     {
         private readonly IAdminService adminService;
         private IConfiguration _config;
-        public AdminController(IAdminService adminService, IConfiguration config)
+        private readonly LoanDbContext _dbconteact;
+        public AdminController(IAdminService adminService, IConfiguration config, LoanDbContext dbconteact)
         {
             this.adminService = adminService;
             _config = config;
+            _dbconteact = dbconteact;
         }
         //Endpoints
         [HttpPost, Route("LoginAdmin")]
@@ -63,8 +65,8 @@ namespace LoanAPI.Controllers
 
         private AdminEntity Authenticate(AdminEntity admin)
         {
-            var currentUser = AdminConstants.Admins.FirstOrDefault(o => o.Username.ToLower() == admin.Username.ToLower() && o.Password == admin.Password);
-
+            //var currentUser = AdminConstants.Admins.FirstOrDefault(o => o.Username.ToLower() == admin.Username.ToLower() && o.Password == admin.Password);
+            var currentUser = _dbconteact.AdminEntity.FirstOrDefault(o => o.Username.ToLower() == admin.Username.ToLower() && o.Password == admin.Password);
             if (currentUser != null)
             {
                 return currentUser;
