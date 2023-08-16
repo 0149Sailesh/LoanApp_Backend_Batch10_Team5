@@ -42,7 +42,7 @@ namespace LoanAPI
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:ValidIssuer"],
-            ValidAudience = builder.Configuration["Jwt:ValidIssuer"],
+            ValidAudience = builder.Configuration["Jwt:ValidAudience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]))
         };
     });

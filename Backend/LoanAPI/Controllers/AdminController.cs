@@ -37,7 +37,7 @@ namespace LoanAPI.Controllers
             if (user != null)
             {
                 var token = Generate(user);
-                return Ok(token);
+                return Ok(new {tokenDet= token, userDet=user});
             }
 
             return NotFound("User not found");
@@ -96,6 +96,7 @@ namespace LoanAPI.Controllers
             List<AdminEntity> admins = adminService.GetAdmins();
             try
             {
+
                 return StatusCode(200, admins);
             }
             catch (Exception)
