@@ -16,8 +16,10 @@ namespace LOANAPI.Entites
         [StringLength(20)]
         [Column(TypeName = "varchar")]
         public string Employee_Name { get; set; }
-
+        
         [Required]
+        //[Column(TypeName = "varchar")]
+        //[StringLength(1)]
         [Column(TypeName = "char")]
         public char Employee_Gender { get; set; }
 
@@ -39,20 +41,9 @@ namespace LOANAPI.Entites
         [Column(TypeName = "DateTime")]
         public DateTime Date_of_Joining { get; set; }
 
-        [Required(ErrorMessage = "User Name is required")]
-        [Column(TypeName = "varchar")]
-        [StringLength(25)]
-        public string Username { get; set; }
-
-        [EmailAddress]
-        [Required(ErrorMessage = "Email is required")]
-        [Column(TypeName = "varchar")]
-        [StringLength(25)]
-        public string? Email { get; set; }
-
         [Required(ErrorMessage = "Password is required")]
         [Column(TypeName = "varchar")]
-        [StringLength(25)]
+        [StringLength(50)]
         public string Password { get; set; }
     }
 }

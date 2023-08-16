@@ -9,18 +9,18 @@ namespace LoanAPI.Entites
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(10)]
+        [StringLength(50)]
         public string Username { get; set; }
 
         [EmailAddress]
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(25)]
+        [StringLength(50)]
         public string Email { get; set; }
 
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(25)]
+        [StringLength(50)]
         public string Password { get; set; }
     }
 }

@@ -24,9 +24,10 @@ namespace LoanAPI
             builder.Services.AddDbContext<LoanDbContext>(options => options.UseSqlServer(connection));
             builder.Services.AddTransient<IAdminService, AdminService>();
             builder.Services.AddTransient<IEmployeeService, EmployeeService>();
-
+            builder.Services.AddTransient<ILoanCardMasterService, LoanCardMasterService>();
+            builder.Services.AddTransient<IItemMasterService, ItemMasterService>();
             // Adding Authentication
-            
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

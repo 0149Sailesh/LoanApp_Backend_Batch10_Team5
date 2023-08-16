@@ -1,5 +1,6 @@
 ﻿using LoanAPI.Entites;
 using LoanAPI.Service;
+using LoanAPI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -30,9 +31,9 @@ namespace LoanAPI.Controllers
         }
         //Endpoints
         [HttpPost, Route("LoginAdmin")]
-        public IActionResult Login([FromBody] AdminEntity admin)
+        public IActionResult Login([FromBody] AdminLoginDTO admin_loginDTO)
         {
-            var user = Authenticate(admin);
+            var user = Authenticate(admin_loginDTO);
 
             if (user != null)
             {
@@ -63,10 +64,10 @@ namespace LoanAPI.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private AdminEntity Authenticate(AdminEntity admin)
+        private AdminEntity Authenticate(AdminLoginDTO admin_loginDTO)
         {
             //var currentUser = AdminConstants.Admins.FirstOrDefault(o => o.Username.ToLower() == admin.Username.ToLower() && o.Password == admin.Password);
-            var currentUser = _dbconteact.AdminEntity.FirstOrDefault(o => o.Username.ToLower() == admin.Username.ToLower() && o.Password == admin.Password);
+            var currentUser = _dbconteact.AdminEntity.FirstOrDefault(o => o.Username.ToLower() == admin_loginDTO.Username.ToLower() && o.Password == admin_loginDTO.Password);
             if (currentUser != null)
             {
                 return currentUser;

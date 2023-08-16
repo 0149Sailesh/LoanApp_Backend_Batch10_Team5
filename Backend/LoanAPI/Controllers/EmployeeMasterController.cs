@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using LoanAPI.Service;
 using LoanAPI.Entites;
+ using LoanAPI.DTOs;
 using LOANAPI.Entites;
 using System;
 using System.Collections.Generic;
@@ -33,12 +34,12 @@ namespace LoanAPI.Controllers
         }
         //Endpoints
         [HttpPost, Route("RegisterEmployee")]
-        public IActionResult Add(EmployeeMastersEntity employee)
+        public IActionResult Add(EmployeeMasterDTO employeeDTO)
         {
             try
             {
 
-                employeeService.AddEmployee(employee);
+                employeeService.AddEmployee(employeeDTO);
                 return StatusCode(200, new JsonResult("Employee Added"));
             }
             catch (Exception)
@@ -49,9 +50,9 @@ namespace LoanAPI.Controllers
         }
         //Endpoints
         [HttpPost, Route("LoginEmployee")]
-        public IActionResult Login([FromBody] EmployeeMastersEntity employee)
+        public IActionResult Login([FromBody] EmployeeMasterLoginDTO employee_loginDTO)
         {
-            var user = Authenticate(employee);
+            var user = Authenticate(employee_loginDTO);
 
             if (user != null)
             {
@@ -69,8 +70,7 @@ namespace LoanAPI.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, employee.Username),
-            new Claim(ClaimTypes.Email, employee.Email)
+                new Claim(ClaimTypes.NameIdentifier, employee.Employee_Id)
             };
 
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
@@ -82,10 +82,10 @@ namespace LoanAPI.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private EmployeeMastersEntity Authenticate(EmployeeMastersEntity employee)
+        private EmployeeMastersEntity Authenticate(EmployeeMasterLoginDTO employee_loginDTO)
         {
-        //    //var currentUser = AdminConstants.Admins.FirstOrDefault(o => o.Username.ToLower() == admin.Username.ToLower() && o.Password == admin.Password);
-            var currentUser = _dbconteact.EMEntity.FirstOrDefault(o => o.Username.ToLower() ==  employee.Username.ToLower() && o.Password == employee.Password);
+        //    //var currentUser = AdminConstants.Admins.FirstOrDefault(o => o.Employee_Id.ToLower() == admin.Employee_Id.ToLower() && o.Password == admin.Password);
+            var currentUser = _dbconteact.EMEntity.FirstOrDefault(o => o.Employee_Id.ToLower() == employee_loginDTO.Username.ToLower() && o.Password == employee_loginDTO.Password);
             if (currentUser != null)
             {
                 return currentUser;
@@ -97,7 +97,7 @@ namespace LoanAPI.Controllers
             [HttpGet, Route("GetAllEmployees")]
         public IActionResult GetAll()
         {
-            List<EmployeeMastersEntity> employees = employeeService.GetEmployees();
+            List<EmployeeMasterDTO> employees = employeeService.GetEmployees();
             try
             {
                 return StatusCode(200, employees);
@@ -113,7 +113,7 @@ namespace LoanAPI.Controllers
         {
             try
             {
-                EmployeeMastersEntity employee = employeeService.GetEmployee(id);
+                EmployeeMasterDTO employee = employeeService.GetEmployee(id);
                 return StatusCode(200, employee);
             }
             catch (Exception)

@@ -9,7 +9,7 @@ namespace LoanAPI.Entites
         //internal object Admin;
         //internal object AdminEntitys;
 
-        public LoanDbContext(DbContextOptions<LoanDbContext> options):base(options)
+        public LoanDbContext(DbContextOptions<LoanDbContext> options) : base(options)
         {
 
         }

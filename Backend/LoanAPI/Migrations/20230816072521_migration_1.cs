@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LoanAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class LoanDb : Migration
+    public partial class migration_1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,9 +15,9 @@ namespace LoanAPI.Migrations
                 name: "AdminEntity",
                 columns: table => new
                 {
-                    Username = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
-                    Email = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
-                    Password = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false)
+                    Username = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,9 +64,7 @@ namespace LoanAPI.Migrations
                     Department = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Date_of_Birth = table.Column<DateTime>(type: "DateTime", nullable: false),
                     Date_of_Joining = table.Column<DateTime>(type: "DateTime", nullable: false),
-                    Username = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
-                    Email = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
-                    Password = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false)
+                    Password = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

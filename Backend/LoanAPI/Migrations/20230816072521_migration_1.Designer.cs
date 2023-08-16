@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoanAPI.Migrations
 {
     [DbContext(typeof(LoanDbContext))]
-    [Migration("20230813115429_LoanDb")]
-    partial class LoanDb
+    [Migration("20230816072521_migration_1")]
+    partial class migration_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,11 +74,6 @@ namespace LoanAPI.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("varchar");
-
                     b.Property<string>("Employee_Gender")
                         .IsRequired()
                         .HasColumnType("char");
@@ -90,12 +85,7 @@ namespace LoanAPI.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("varchar");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(25)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.HasKey("Employee_Id");
@@ -106,17 +96,17 @@ namespace LoanAPI.Migrations
             modelBuilder.Entity("LoanAPI.Entites.AdminEntity", b =>
                 {
                     b.Property<string>("Username")
-                        .HasMaxLength(10)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(25)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(25)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.HasKey("Username");

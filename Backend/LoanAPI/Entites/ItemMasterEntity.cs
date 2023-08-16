@@ -33,7 +33,7 @@ namespace LoanAPI.Entites
 
         [Required]
         [Column(TypeName = "int")]
-        [MaxLength(6)]
+        //[MaxLength(6)]
         public int Item_Valuation { get; set; }
 
     }

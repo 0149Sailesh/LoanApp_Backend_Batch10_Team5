@@ -18,7 +18,7 @@ namespace LoanAPI.Entites
 
         [Required]
         [Column(TypeName = "int")]
-        [MaxLength(2)]
+        //[MaxLength(2)]
         public int Duration { get; set; }
     }
 }
