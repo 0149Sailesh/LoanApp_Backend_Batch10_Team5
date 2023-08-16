@@ -38,7 +38,12 @@ namespace LoanAPI.Controllers
             if (user != null)
             {
                 var token = Generate(user);
-                return Ok(new {tokenDet= token, userDet=user});
+                var admin = new AdminResponseDTO()
+                {
+                    Username = user.Username,
+                    Email = user.Email,
+                };
+                return Ok(new { tokenDet = token, userDet = admin, user_role = "admin" });
             }
 
             return NotFound("User not found");
@@ -91,7 +96,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpGet, Route("GetAllAdmins")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetAll()
         {
             List<AdminEntity> admins = adminService.GetAdmins();

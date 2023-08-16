@@ -56,8 +56,19 @@ namespace LoanAPI.Controllers
 
             if (user != null)
             {
+                
                 var token = Generate(user);
-                return Ok(token);
+                var user_response = new EmployeeMasterDTO()
+                {
+                    Employee_Id = user.Employee_Id,
+                    Employee_Name = user.Employee_Name,
+                    Employee_Gender = user.Employee_Gender,
+                    Designation = user.Designation,
+                    Department = user.Department,
+                    Date_of_Birth = user.Date_of_Birth,
+                    Date_of_Joining = user.Date_of_Joining
+                };
+                return Ok(new { tokenDet = token, userDet = user_response, user_role = "user" });
             }
 
             return NotFound("User not found");
