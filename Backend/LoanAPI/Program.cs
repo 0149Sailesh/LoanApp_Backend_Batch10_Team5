@@ -26,6 +26,8 @@ namespace LoanAPI
             builder.Services.AddTransient<IEmployeeService, EmployeeService>();
             builder.Services.AddTransient<ILoanCardMasterService, LoanCardMasterService>();
             builder.Services.AddTransient<IItemMasterService, ItemMasterService>();
+            builder.Services.AddTransient<IEmployeeIssueDetailsService, EmployeeIssueDetailsService>();
+            builder.Services.AddTransient<IEmployeeCardDetailsService, EmployeeCardDetailsService>();
             // Adding Authentication
 
 
