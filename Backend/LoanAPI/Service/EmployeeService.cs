@@ -73,6 +73,44 @@ namespace LoanAPI.Service
             };
             return employeeDTO;
         }
+        public List<EmployeeLoanCardDTO> GetEmployeesLoanCard(string id) {
+            List<EmployeeCardDetailsEntity> Employee_Card = _dbconteact.ECDEntity.Where(i => i.Employee_Id.Equals(id)).ToList();
+            List<EmployeeLoanCardDTO> Emp_loan_card = new List<EmployeeLoanCardDTO>();
+            foreach (var loan_card in Employee_Card)
+            {
+                EmployeeLoanCardDTO loan_cardDTO = new EmployeeLoanCardDTO() { 
+                    Loan_Id = loan_card.Loan_Id,
+                    Loan_Type = _dbconteact.LCMEntity.Find(loan_card.Loan_Id).Loan_Type,
+                    Duration = _dbconteact.LCMEntity.Find(loan_card.Loan_Id).Duration,
+                    Card_Issue_Date =  loan_card.Card_Issue_Date,
+                };
+                Emp_loan_card.Add(loan_cardDTO);
+
+            }
+            return Emp_loan_card;
+
+        }
+        public List<EmployeeItemPurchaseDTO> GetEmployeesItemPurchase(string id)
+        {
+            List<EmployeeIssueDetailsEntity> Employee_Issue = _dbconteact.EIDEntity.Where(i => i.Employee_Id.Equals(id)).ToList();
+            List<EmployeeItemPurchaseDTO> Emp_item_purchase = new List<EmployeeItemPurchaseDTO>();
+            foreach (var emp_issue in Employee_Issue)
+            {
+                EmployeeItemPurchaseDTO item_purchaseDTO = new EmployeeItemPurchaseDTO()
+                {
+                    Issue_Id = emp_issue.Issue_Id,
+                    Item_Description = _dbconteact.IMEntity.Find(emp_issue.Item_Id).Item_Description,
+                    Item_Make= _dbconteact.IMEntity.Find(emp_issue.Item_Id).Item_Make,
+                    Item_Category= _dbconteact.IMEntity.Find(emp_issue.Item_Id).Item_Category,
+                    Item_Valuation= _dbconteact.IMEntity.Find(emp_issue.Item_Id).Item_Valuation,
+                    
+                };
+                Emp_item_purchase.Add(item_purchaseDTO);
+
+            }
+            return Emp_item_purchase;
+
+        }
         public List<EmployeeMasterDTO> GetEmployees()
         {
             List<EmployeeMastersEntity> employees=_dbconteact.EMEntity.ToList();

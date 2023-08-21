@@ -28,9 +28,9 @@ namespace LoanAPI.Migrations
                 name: "ECDEntity",
                 columns: table => new
                 {
-                    Card_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
-                    Employee_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
-                    Loan_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
+                    Card_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Employee_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Loan_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Card_Issue_Date = table.Column<DateTime>(type: "DateTime", nullable: false)
                 },
                 constraints: table =>
@@ -42,9 +42,9 @@ namespace LoanAPI.Migrations
                 name: "EIDEntity",
                 columns: table => new
                 {
-                    Issue_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
-                    Employee_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
-                    Item_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
+                    Issue_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Employee_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Item_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Issue_Date = table.Column<DateTime>(type: "DateTime", nullable: false),
                     Return_Date = table.Column<DateTime>(type: "DateTime", nullable: false)
                 },
@@ -57,7 +57,7 @@ namespace LoanAPI.Migrations
                 name: "EMEntity",
                 columns: table => new
                 {
-                    Employee_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
+                    Employee_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Employee_Name = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
                     Employee_Gender = table.Column<string>(type: "char(1)", nullable: false),
                     Designation = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
@@ -75,12 +75,12 @@ namespace LoanAPI.Migrations
                 name: "IMEntity",
                 columns: table => new
                 {
-                    Item_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
+                    Item_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Item_Description = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Issue_Status = table.Column<string>(type: "varchar(1)", maxLength: 1, nullable: false),
                     Item_Make = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Item_Category = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
-                    Item_Valuation = table.Column<int>(type: "int", maxLength: 6, nullable: false)
+                    Item_Valuation = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,9 +91,9 @@ namespace LoanAPI.Migrations
                 name: "LCMEntity",
                 columns: table => new
                 {
-                    Loan_Id = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
+                    Loan_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Loan_Type = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
-                    Duration = table.Column<int>(type: "int", maxLength: 2, nullable: false)
+                    Duration = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -119,6 +119,38 @@ namespace LoanAPI.Controllers
                 throw;
             }
         }
+
+
+        [HttpGet, Route("GetAllEmployeesLoanCard/{id}")]
+        public IActionResult GetAllEmployeesLoanCard(string id)
+        {
+            List<EmployeeLoanCardDTO> employees_loan_card = employeeService.GetEmployeesLoanCard(id);
+            try
+            {
+                return StatusCode(200, employees_loan_card);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet, Route("GetAllEmployeesItemPurchase/{id}")]
+        public IActionResult GetAllEmployeesItemPurchase(string id)
+        {
+            List<EmployeeItemPurchaseDTO> employees_item_purchase = employeeService.GetEmployeesItemPurchase(id);
+            try
+            {
+                return StatusCode(200, employees_item_purchase);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         [HttpGet, Route("GetEmployee/{id}")]
         public IActionResult GetEmployee(string id)
         {

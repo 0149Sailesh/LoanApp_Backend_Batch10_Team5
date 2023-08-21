@@ -8,7 +8,7 @@ namespace LoanAPI.Entites
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         public string Item_Id { get; set; }
 
         [Required]

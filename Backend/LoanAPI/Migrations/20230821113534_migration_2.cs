@@ -5,7 +5,7 @@
 namespace LoanAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class myfirst : Migration
+    public partial class migration_2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -13,7 +13,8 @@ namespace LoanAPI.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Employee_Gender",
                 table: "EMEntity",
-                type: "char(1)",
+                type: "varchar(1)",
+                maxLength: 1,
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "char");
@@ -28,7 +29,8 @@ namespace LoanAPI.Migrations
                 type: "char",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "char(1)");
+                oldType: "varchar(1)",
+                oldMaxLength: 1);
         }
     }
 }

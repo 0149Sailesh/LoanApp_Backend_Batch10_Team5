@@ -9,7 +9,7 @@ namespace LOANAPI.Entites
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         public string Employee_Id { get; set; }
 
         [Required]
@@ -18,10 +18,11 @@ namespace LOANAPI.Entites
         public string Employee_Name { get; set; }
         
         [Required]
-        //[Column(TypeName = "varchar")]
-        //[StringLength(1)]
-        [Column(TypeName = "char")]
-        public char Employee_Gender { get; set; }
+        [Column(TypeName = "varchar")]
+        [StringLength(1)]
+        //[Column(TypeName = "char")]
+
+        public string Employee_Gender { get; set; }
 
         [Required]
         [StringLength(25)]

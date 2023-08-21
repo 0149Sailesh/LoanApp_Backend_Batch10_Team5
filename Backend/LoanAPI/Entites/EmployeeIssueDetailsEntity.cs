@@ -9,18 +9,18 @@ namespace LOANAPI.Entites
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //disable identity
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         public string Issue_Id { get; set; }
 
         [Required] //applies not null constraint
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         [ForeignKey("EmployeeMasterEntity")]
         public string Employee_Id { get; set; }
 
         [Required] //applies not null constraint
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         [ForeignKey("ItemMasterEntity")]
         public string Item_Id { get; set; }
 

@@ -8,19 +8,19 @@ namespace LoanAPI.Entites
         [Key]
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         public string Card_Id { get; set; }
 
 
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         [ForeignKey("EmployeeMasterEntity")]
         public string Employee_Id { get; set; }
 
         [Required]
         [Column(TypeName = "varchar")]
-        [StringLength(6)]
+        [StringLength(50)]
         [ForeignKey("LoanCardMaster")]
         public string Loan_Id { get; set; }
 

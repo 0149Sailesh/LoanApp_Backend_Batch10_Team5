@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoanAPI.Migrations
 {
     [DbContext(typeof(LoanDbContext))]
-    [Migration("20230816072521_migration_1")]
-    partial class migration_1
+    [Migration("20230821113534_migration_2")]
+    partial class migration_2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,12 +28,12 @@ namespace LoanAPI.Migrations
             modelBuilder.Entity("LOANAPI.Entites.EmployeeIssueDetailsEntity", b =>
                 {
                     b.Property<string>("Issue_Id")
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<string>("Employee_Id")
                         .IsRequired()
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<DateTime>("Issue_Date")
@@ -41,7 +41,7 @@ namespace LoanAPI.Migrations
 
                     b.Property<string>("Item_Id")
                         .IsRequired()
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<DateTime>("Return_Date")
@@ -55,7 +55,7 @@ namespace LoanAPI.Migrations
             modelBuilder.Entity("LOANAPI.Entites.EmployeeMastersEntity", b =>
                 {
                     b.Property<string>("Employee_Id")
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<DateTime>("Date_of_Birth")
@@ -76,7 +76,8 @@ namespace LoanAPI.Migrations
 
                     b.Property<string>("Employee_Gender")
                         .IsRequired()
-                        .HasColumnType("char");
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Employee_Name")
                         .IsRequired()
@@ -117,7 +118,7 @@ namespace LoanAPI.Migrations
             modelBuilder.Entity("LoanAPI.Entites.EmployeeCardDetailsEntity", b =>
                 {
                     b.Property<string>("Card_Id")
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<DateTime>("Card_Issue_Date")
@@ -125,12 +126,12 @@ namespace LoanAPI.Migrations
 
                     b.Property<string>("Employee_Id")
                         .IsRequired()
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<string>("Loan_Id")
                         .IsRequired()
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.HasKey("Card_Id");
@@ -141,7 +142,7 @@ namespace LoanAPI.Migrations
             modelBuilder.Entity("LoanAPI.Entites.ItemMasterEntity", b =>
                 {
                     b.Property<string>("Item_Id")
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<string>("Issue_Status")
@@ -165,7 +166,6 @@ namespace LoanAPI.Migrations
                         .HasColumnType("varchar");
 
                     b.Property<int>("Item_Valuation")
-                        .HasMaxLength(6)
                         .HasColumnType("int");
 
                     b.HasKey("Item_Id");
@@ -176,11 +176,10 @@ namespace LoanAPI.Migrations
             modelBuilder.Entity("LoanAPI.Entites.LoanCardMasterEntity", b =>
                 {
                     b.Property<string>("Loan_Id")
-                        .HasMaxLength(6)
+                        .HasMaxLength(50)
                         .HasColumnType("varchar");
 
                     b.Property<int>("Duration")
-                        .HasMaxLength(2)
                         .HasColumnType("int");
 
                     b.Property<string>("Loan_Type")
