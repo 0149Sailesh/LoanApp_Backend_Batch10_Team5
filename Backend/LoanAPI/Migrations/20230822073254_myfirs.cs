@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LoanAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class migration_1 : Migration
+    public partial class myfirs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -59,7 +59,7 @@ namespace LoanAPI.Migrations
                 {
                     Employee_Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Employee_Name = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
-                    Employee_Gender = table.Column<string>(type: "char(1)", nullable: false),
+                    Employee_Gender = table.Column<string>(type: "varchar(1)", maxLength: 1, nullable: false),
                     Designation = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Department = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Date_of_Birth = table.Column<DateTime>(type: "DateTime", nullable: false),

@@ -2,6 +2,7 @@
 using LoanAPI.Entites;
 using LoanAPI.Service;
 using LOANAPI.Entites;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace LoanAPI.Controllers
         }
 
         [HttpPost, Route("RegisterItem")]
+        [Authorize(Roles = "admin")]
         public IActionResult Add(ItemMasterEntity item)
         {
             try
@@ -34,6 +36,7 @@ namespace LoanAPI.Controllers
         }
 
         [HttpGet, Route("GetAllItems")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAll()
         {
             List<ItemMasterEntity> items = Item.GetItems();
@@ -48,6 +51,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpGet, Route("GetItem/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetItem(string id)
         {
             try
@@ -62,6 +66,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpPut, Route("EditItem")]
+        [Authorize(Roles = "admin")]
         public IActionResult Update(ItemMasterEntity item)
         {
             try
@@ -76,6 +81,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpDelete, Route("DeleteItem/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(string id)
         {
             try

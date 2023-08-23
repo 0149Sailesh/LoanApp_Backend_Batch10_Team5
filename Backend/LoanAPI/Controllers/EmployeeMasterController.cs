@@ -81,7 +81,8 @@ namespace LoanAPI.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, employee.Employee_Id)
+                new Claim(ClaimTypes.NameIdentifier, employee.Employee_Id),
+                new Claim(ClaimTypes.Role, "user")
             };
 
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
@@ -106,6 +107,7 @@ namespace LoanAPI.Controllers
         }
 
             [HttpGet, Route("GetAllEmployees")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAll()
         {
             List<EmployeeMasterDTO> employees = employeeService.GetEmployees();
@@ -122,6 +124,7 @@ namespace LoanAPI.Controllers
 
 
         [HttpGet, Route("GetAllEmployeesLoanCard/{id}")]
+        [Authorize(Roles = "user")]
         public IActionResult GetAllEmployeesLoanCard(string id)
         {
             List<EmployeeLoanCardDTO> employees_loan_card = employeeService.GetEmployeesLoanCard(id);
@@ -137,6 +140,7 @@ namespace LoanAPI.Controllers
         }
 
         [HttpGet, Route("GetAllEmployeesItemPurchase/{id}")]
+        [Authorize(Roles ="user")]
         public IActionResult GetAllEmployeesItemPurchase(string id)
         {
             List<EmployeeItemPurchaseDTO> employees_item_purchase = employeeService.GetEmployeesItemPurchase(id);
@@ -152,6 +156,7 @@ namespace LoanAPI.Controllers
         }
 
         [HttpGet, Route("GetEmployee/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetEmployee(string id)
         {
             try
@@ -166,6 +171,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpPut, Route("EditEmployee")]
+        [Authorize(Roles = "admin")]
         public IActionResult Update(EmployeeMastersEntity employee)
         {
             try
@@ -180,6 +186,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpDelete, Route("DeleteEmployee/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(string id)
         {
             try

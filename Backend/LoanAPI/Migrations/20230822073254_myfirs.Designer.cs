@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoanAPI.Migrations
 {
     [DbContext(typeof(LoanDbContext))]
-    [Migration("20230821112450_migration_1")]
-    partial class migration_1
+    [Migration("20230822073254_myfirs")]
+    partial class myfirs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,8 @@ namespace LoanAPI.Migrations
 
                     b.Property<string>("Employee_Gender")
                         .IsRequired()
-                        .HasColumnType("char");
+                        .HasMaxLength(1)
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Employee_Name")
                         .IsRequired()

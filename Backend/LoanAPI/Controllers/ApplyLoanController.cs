@@ -2,8 +2,10 @@
 using LoanAPI.Entites;
 using LoanAPI.Service;
 using LOANAPI.Entites;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 
 namespace LoanAPI.Controllers
@@ -19,6 +21,7 @@ namespace LoanAPI.Controllers
         }
         //Endpoints
         [HttpPost, Route("")]
+        [Authorize(Roles = "user")]
         public IActionResult Add(ApplyLoanDTO loanDTO)
         {
             try

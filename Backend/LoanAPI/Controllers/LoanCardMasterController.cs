@@ -2,8 +2,10 @@
 using LoanAPI.Entites;
 using LoanAPI.Service;
 using LOANAPI.Entites;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace LoanAPI.Controllers
 {
@@ -18,6 +20,7 @@ namespace LoanAPI.Controllers
         }
 
         [HttpPost, Route("RegisterLoanCard")]
+        [Authorize(Roles = "admin")]
         public IActionResult Add(LoanCardMasterEntity loan_card)
         {
             try
@@ -34,6 +37,7 @@ namespace LoanAPI.Controllers
         }
 
         [HttpGet, Route("GetAllLoanCards")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAll()
         {
             List<LoanCardMasterEntity> loan_cards = Loan_card.GetLoanCards();
@@ -48,6 +52,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpGet, Route("GetLoanCard/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetLoanCard(string id)
         {
             try
@@ -62,6 +67,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpPut, Route("EditLoanCard")]
+        [Authorize(Roles = "admin")]
         public IActionResult Update(LoanCardMasterEntity loan_card)
         {
             try
@@ -76,6 +82,7 @@ namespace LoanAPI.Controllers
             }
         }
         [HttpDelete, Route("DeleteLoanCard/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(string id)
         {
             try

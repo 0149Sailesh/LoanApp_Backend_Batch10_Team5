@@ -57,6 +57,7 @@ namespace LoanAPI.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, admin.Username),
+                new Claim(ClaimTypes.Role, "admin"),
                 new Claim(ClaimTypes.Email, admin.Email)
             };
 
