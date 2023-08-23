@@ -1,8 +1,10 @@
 ﻿using LoanAPI.Entites;
 using LoanAPI.Service;
 using LOANAPI.Entites;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace LoanAPI.Controllers
 {
@@ -17,22 +19,24 @@ namespace LoanAPI.Controllers
         }
 
         [HttpPost, Route("RegisterEmployeeIssueDetails")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult Add(EmployeeIssueDetailsEntity esd)
         {
             try
             {
 
                 _esd.AddEmployeeIssueDetails(esd);
-                return StatusCode(200, new JsonResult("EmployeeIssueDetails Added"));
+                return StatusCode(200, new JsonResult(esd,"EmployeeIssueDetails Added"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
 
         [HttpGet, Route("GetAllEmployeeIssueDetailss")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetAll()
         {
             List<EmployeeIssueDetailsEntity> esds = _esd.GetEmployeeIssueDetails();
@@ -40,13 +44,14 @@ namespace LoanAPI.Controllers
             {
                 return StatusCode(200, esds);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpGet, Route("GetEmployeeIssueDetails/{id}")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetEmployeeIssueDetails(string id)
         {
             try
@@ -54,13 +59,14 @@ namespace LoanAPI.Controllers
                 EmployeeIssueDetailsEntity esd = _esd.GetEmployeeIssueDetail(id);
                 return StatusCode(200, esd);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpPut, Route("EditEmployeeIssueDetails")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult Update(EmployeeIssueDetailsEntity esd)
         {
             try
@@ -68,13 +74,14 @@ namespace LoanAPI.Controllers
                 _esd.EditEmployeeIssueDetails(esd);
                 return StatusCode(200, new JsonResult("EmployeeIssueDetails Updated"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpDelete, Route("DeleteEmployeeIssueDetails/{id}")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult Delete(string id)
         {
             try
@@ -82,10 +89,10 @@ namespace LoanAPI.Controllers
                 _esd.DeleteEmployeeIssueDetails(id);
                 return StatusCode(200, new JsonResult("EmployeeIssueDetails Deleted"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
     }

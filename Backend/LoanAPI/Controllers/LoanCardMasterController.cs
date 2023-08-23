@@ -27,17 +27,17 @@ namespace LoanAPI.Controllers
             {
 
                 Loan_card.AddLoanCard(loan_card);
-                return StatusCode(200, new JsonResult("LoanCard Added"));
+                return StatusCode(200, new JsonResult(loan_card,"LoanCard Added"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
 
         [HttpGet, Route("GetAllLoanCards")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetAll()
         {
             List<LoanCardMasterEntity> loan_cards = Loan_card.GetLoanCards();
@@ -45,14 +45,14 @@ namespace LoanAPI.Controllers
             {
                 return StatusCode(200, loan_cards);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpGet, Route("GetLoanCard/{id}")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetLoanCard(string id)
         {
             try
@@ -60,10 +60,10 @@ namespace LoanAPI.Controllers
                 LoanCardMasterEntity loan_card = Loan_card.GetLoanCard(id);
                 return StatusCode(200, loan_card);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpPut, Route("EditLoanCard")]
@@ -75,10 +75,10 @@ namespace LoanAPI.Controllers
                 Loan_card.EditLoanCard(loan_card);
                 return StatusCode(200, new JsonResult("LoanCard Updated"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpDelete, Route("DeleteLoanCard/{id}")]
@@ -90,10 +90,10 @@ namespace LoanAPI.Controllers
                 Loan_card.DeleteLoanCard(id);
                 return StatusCode(200, new JsonResult("LoanCard Deleted"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
     }

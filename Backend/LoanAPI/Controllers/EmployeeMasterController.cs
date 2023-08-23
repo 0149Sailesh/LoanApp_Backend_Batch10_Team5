@@ -34,6 +34,7 @@ namespace LoanAPI.Controllers
         }
         //Endpoints
         [HttpPost, Route("RegisterEmployee")]
+        [Authorize(Roles = "admin")]
         public IActionResult Add(EmployeeMasterDTO employeeDTO)
         {
             try
@@ -42,10 +43,10 @@ namespace LoanAPI.Controllers
                 employeeService.AddEmployee(employeeDTO);
                 return StatusCode(200, new JsonResult("Employee Added"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);;
             }
         }
         //Endpoints
@@ -115,10 +116,10 @@ namespace LoanAPI.Controllers
             {
                 return StatusCode(200, employees);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);;
             }
         }
 
@@ -132,10 +133,10 @@ namespace LoanAPI.Controllers
             {
                 return StatusCode(200, employees_loan_card);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);;
             }
         }
 
@@ -148,15 +149,15 @@ namespace LoanAPI.Controllers
             {
                 return StatusCode(200, employees_item_purchase);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);;
             }
         }
 
         [HttpGet, Route("GetEmployee/{id}")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetEmployee(string id)
         {
             try
@@ -164,10 +165,10 @@ namespace LoanAPI.Controllers
                 EmployeeMasterDTO employee = employeeService.GetEmployee(id);
                 return StatusCode(200, employee);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);;
             }
         }
         [HttpPut, Route("EditEmployee")]
@@ -179,10 +180,10 @@ namespace LoanAPI.Controllers
                 employeeService.EditEmployee(employee);
                 return StatusCode(200, new JsonResult("Employee Updated"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);;
             }
         }
         [HttpDelete, Route("DeleteEmployee/{id}")]
@@ -194,10 +195,10 @@ namespace LoanAPI.Controllers
                 employeeService.DeleteEmployee(id);
                 return StatusCode(200, new JsonResult("Employee Deleted"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);;
             }
         }
 

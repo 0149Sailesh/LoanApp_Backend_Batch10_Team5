@@ -58,10 +58,10 @@ namespace LoanAPI.Controllers
                 
                 return StatusCode(400, new JsonResult("Loan cannot be issued!"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
     }

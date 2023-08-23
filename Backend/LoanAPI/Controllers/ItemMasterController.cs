@@ -26,17 +26,17 @@ namespace LoanAPI.Controllers
             {
 
                 Item.AddItem(item);
-                return StatusCode(200, new JsonResult("Item Added"));
+                return StatusCode(200, new JsonResult(item,"Item Added"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
 
         [HttpGet, Route("GetAllItems")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetAll()
         {
             List<ItemMasterEntity> items = Item.GetItems();
@@ -44,14 +44,14 @@ namespace LoanAPI.Controllers
             {
                 return StatusCode(200, items);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpGet, Route("GetItem/{id}")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetItem(string id)
         {
             try
@@ -59,10 +59,10 @@ namespace LoanAPI.Controllers
                 ItemMasterEntity item = Item.GetItem(id);
                 return StatusCode(200, item);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpPut, Route("EditItem")]
@@ -74,10 +74,10 @@ namespace LoanAPI.Controllers
                 Item.EditItem(item);
                 return StatusCode(200, new JsonResult("Item Updated"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpDelete, Route("DeleteItem/{id}")]
@@ -89,10 +89,10 @@ namespace LoanAPI.Controllers
                 Item.DeleteItem(id);
                 return StatusCode(200, new JsonResult("Item Deleted"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
     }

@@ -82,22 +82,24 @@ namespace LoanAPI.Controllers
             return null;
         }
         [HttpPost, Route("RegisterAdmin")]
+        //[Authorize(Roles = "admin")]
         public IActionResult Add(AdminEntity admin)
         {
             try
             {
 
                 adminService.AddAdmin(admin);
-                return StatusCode(200, new JsonResult("Admin Added"));
+                return StatusCode(200, new JsonResult(admin,"Admin Added"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpGet, Route("GetAllAdmins")]
         //[Authorize]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAll()
         {
             List<AdminEntity> admins = adminService.GetAdmins();
@@ -106,13 +108,15 @@ namespace LoanAPI.Controllers
 
                 return StatusCode(200, admins);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
+
         [HttpGet, Route("GetAdmin/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAdmin(string id)
         {
             try
@@ -120,13 +124,14 @@ namespace LoanAPI.Controllers
                 AdminEntity admin = adminService.GetAdmin(id);
                 return StatusCode(200, admin);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpPut, Route("EditAdmin")]
+        [Authorize(Roles = "admin")]
         public IActionResult Update(AdminEntity admin)
         {
             try
@@ -134,13 +139,14 @@ namespace LoanAPI.Controllers
                 adminService.EditAdmin(admin);
                 return StatusCode(200, new JsonResult("Admin Updated"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpDelete, Route("DeleteAdmin/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(string id)
         {
             try
@@ -148,10 +154,10 @@ namespace LoanAPI.Controllers
                 adminService.DeleteAdmin(id);
                 return StatusCode(200, new JsonResult("Admin Deleted"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
     }

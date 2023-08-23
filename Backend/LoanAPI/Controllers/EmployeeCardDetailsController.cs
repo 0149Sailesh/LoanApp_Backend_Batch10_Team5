@@ -3,6 +3,8 @@ using LoanAPI.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LoanAPI.Entites;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace LoanAPI.Controllers
 {
@@ -17,22 +19,24 @@ namespace LoanAPI.Controllers
         }
 
         [HttpPost, Route("RegisterEmployeeCardDetails")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult Add(EmployeeCardDetailsEntity ecd)
         {
             try
             {
 
                 _ecd.AddEmployeeCardDetails(ecd);
-                return StatusCode(200, new JsonResult("EmployeeCardDetails Added"));
+                return StatusCode(200, new JsonResult(ecd,"EmployeeCardDetails Added"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
 
         [HttpGet, Route("GetAllEmployeeCardDetailss")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetAll()
         {
             List<EmployeeCardDetailsEntity> ecds = _ecd.GetEmployeeCardDetails();
@@ -40,13 +44,14 @@ namespace LoanAPI.Controllers
             {
                 return StatusCode(200, ecds);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpGet, Route("GetEmployeeCardDetails/{id}")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult GetEmployeeCardDetails(string id)
         {
             try
@@ -54,13 +59,14 @@ namespace LoanAPI.Controllers
                 EmployeeCardDetailsEntity ecd = _ecd.GetEmployeeCardDetail(id);
                 return StatusCode(200, ecd);
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpPut, Route("EditEmployeeCardDetails")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult Update(EmployeeCardDetailsEntity ecd)
         {
             try
@@ -68,13 +74,14 @@ namespace LoanAPI.Controllers
                 _ecd.EditEmployeeCardDetails(ecd);
                 return StatusCode(200, new JsonResult("EmployeeCardDetails Updated"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpDelete, Route("DeleteEmployeeCardDetails/{id}")]
+        [Authorize(Roles = "user, admin")]
         public IActionResult Delete(string id)
         {
             try
@@ -82,10 +89,10 @@ namespace LoanAPI.Controllers
                 _ecd.DeleteEmployeeCardDetails(id);
                 return StatusCode(200, new JsonResult("EmployeeCardDetails Deleted"));
             }
-            catch (Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                return StatusCode(500, ex.Message);
             }
         }
     }
