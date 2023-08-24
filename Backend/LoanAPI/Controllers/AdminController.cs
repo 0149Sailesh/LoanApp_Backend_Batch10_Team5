@@ -64,7 +64,7 @@ namespace LoanAPI.Controllers
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
               _config["Jwt:ValidAudience"],
               claims,
-              expires: DateTime.Now.AddMinutes(15),
+              expires: DateTime.Now.AddHours(48),
               signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -93,7 +93,6 @@ namespace LoanAPI.Controllers
             }
             catch (System.Exception ex)
             {
-
                 return StatusCode(500, ex.Message);
             }
         }
@@ -115,20 +114,12 @@ namespace LoanAPI.Controllers
             }
         }
 
-        [HttpGet, Route("GetAdmin/{id}")]
-        [Authorize(Roles = "admin")]
-        public IActionResult GetAdmin(string id)
+        [HttpGet, Route("GetAdmin")]
+        [Authorize]
+        public IActionResult GetAdmin()
         {
-            try
-            {
-                AdminEntity admin = adminService.GetAdmin(id);
-                return StatusCode(200, admin);
-            }
-            catch (System.Exception ex)
-            {
-
-                return StatusCode(500, ex.Message);
-            }
+            return StatusCode(200);
+           
         }
         [HttpPut, Route("EditAdmin")]
         [Authorize(Roles = "admin")]

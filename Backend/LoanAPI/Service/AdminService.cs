@@ -14,7 +14,6 @@ namespace LoanAPI.Service
 
         public void AddAdmin(AdminEntity Admin)
         {
-            Console.WriteLine("Enter into Admin Service");
             _dbconteact.AdminEntity.Add(Admin);
             _dbconteact.SaveChanges();
         }

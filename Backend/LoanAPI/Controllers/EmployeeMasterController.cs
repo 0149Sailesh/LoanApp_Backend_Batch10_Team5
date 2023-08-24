@@ -89,7 +89,7 @@ namespace LoanAPI.Controllers
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
               _config["Jwt:ValidAudience"],
               claims,
-              expires: DateTime.Now.AddMinutes(15),
+              expires: DateTime.Now.AddHours(48),
               signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
