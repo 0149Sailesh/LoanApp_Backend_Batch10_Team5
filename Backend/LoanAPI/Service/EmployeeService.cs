@@ -1,6 +1,5 @@
 ﻿using LoanAPI.DTOs;
 using LoanAPI.Entites;
-using LoanAPI.Models;
 using LOANAPI.Entites;
 using System.Collections.Generic;
 
@@ -76,15 +75,27 @@ namespace LoanAPI.Service
         public List<EmployeeLoanCardDTO> GetEmployeesLoanCard(string id) {
             List<EmployeeCardDetailsEntity> Employee_Card = _dbconteact.ECDEntity.Where(i => i.Employee_Id.Equals(id)).ToList();
             List<EmployeeLoanCardDTO> Emp_loan_card = new List<EmployeeLoanCardDTO>();
+            DateTime today = DateTime.Now;
+            
             foreach (var loan_card in Employee_Card)
+
             {
-                EmployeeLoanCardDTO loan_cardDTO = new EmployeeLoanCardDTO() { 
-                    Loan_Id = loan_card.Loan_Id,
-                    Loan_Type = _dbconteact.LCMEntity.Find(loan_card.Loan_Id).Loan_Type,
-                    Duration = _dbconteact.LCMEntity.Find(loan_card.Loan_Id).Duration,
-                    Card_Issue_Date =  loan_card.Card_Issue_Date,
-                };
-                Emp_loan_card.Add(loan_cardDTO);
+                var duration = _dbconteact.LCMEntity.Find(loan_card.Loan_Id).Duration;
+                DateTime issue_date = (loan_card.Card_Issue_Date);
+
+                DateTime return_date = issue_date.AddDays(365 * duration);
+                if(return_date >= today)
+                {
+                    EmployeeLoanCardDTO loan_cardDTO = new EmployeeLoanCardDTO()
+                    {
+                        Loan_Id = loan_card.Loan_Id,
+                        Loan_Type = _dbconteact.LCMEntity.Find(loan_card.Loan_Id).Loan_Type,
+                        Duration = duration,
+                        Card_Issue_Date = loan_card.Card_Issue_Date,
+                    };
+                    Emp_loan_card.Add(loan_cardDTO);
+
+                }
 
             }
             return Emp_loan_card;

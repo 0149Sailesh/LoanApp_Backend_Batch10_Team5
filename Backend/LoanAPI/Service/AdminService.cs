@@ -1,5 +1,4 @@
 ﻿using LoanAPI.Entites;
-using LoanAPI.Models;
 
 namespace LoanAPI.Service
 {

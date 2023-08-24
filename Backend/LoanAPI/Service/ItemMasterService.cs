@@ -1,6 +1,5 @@
 ﻿using LoanAPI.DTOs;
 using LoanAPI.Entites;
-using LoanAPI.Models;
 using LOANAPI.Entites;
 
 namespace LoanAPI.Service
